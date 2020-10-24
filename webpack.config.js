@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const babelLoader = require('./src/webpack/babelLoader');
+
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -13,6 +15,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
+      },
+      {
+        test: /\.pcss$/,
+        use: ["style-loader", "css-loader", 'postcss-loader']
       },
       {
         test: /\.css$/,
