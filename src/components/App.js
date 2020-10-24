@@ -1,15 +1,18 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
+import React from 'react';
+import { Card } from './card/index';
 
-import '../styles/App.css';
+import '../pcss/App.pcss';
+import '../css/App.css';
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Memory page!</h1>
-            </div>
-        );
-    }
-}
-
-export default App;
+export default function App() {
+  return (
+    <div>
+      <h1>Memory page!</h1>
+      <Card
+        title={'LALKA'}
+        birthday={{ day: '27', month: '04', year: '1992' }}
+      />
+    </div>
+  );
+};
