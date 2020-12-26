@@ -1,18 +1,20 @@
 .card {
-  width: 50%;
-  position: relative;
   display: block;
-  opacity: 0.4;
+  position: relative;
+
+  width: 365px;
+  padding: .5em 1em;
+
   cursor: default;
   font-size: 90%;
   font-weight: 700;
   color: rgb(209,209,217);
   text-decoration: none;
   text-shadow: 0 -1px 2px rgba(0,0,0,.2);
-  padding: .5em 1em;
   outline: none;
+
   border-radius: 3px;
-  background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+  background: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
   box-shadow:
    0 1px rgba(255,255,255,.2) inset,
    0 3px 5px rgba(0,1,6,.5),
@@ -26,6 +28,7 @@
 
 .card:active {
   top: 1px;
+
   background: linear-gradient(rgb(76,77,82), rgb(56,57,62)) rgb(76,77,82);
   box-shadow:
    0 0 1px rgba(0,0,0,.5) inset,
@@ -37,14 +40,23 @@
   margin-bottom: 10px;
 }
 
+.card__progress {
+  display:block;
+  position:absolute;
+  top: 0;
+  left: 0;
+
+  width:120px;
+  height:100%;
+
+  background: #1CAE30;
+  opacity: 0.3;
+}
+
 .card__title {
-
+  color: #fef5ef;
 }
 
-.card__info {
-  display: flex;
-}
-
-.card__birthday {
-  
+.card__birthday > p > span {
+  color: #e4bb97;
 }
