@@ -73,29 +73,36 @@ export const Card = (props) => {
     setInterval(() => setCurrentDateState(new Date()), 1000);
   }, []);
 
-  useEffect(() => {
-    
-  }, [currentDateState]);
+  useEffect(() => {}, [currentDateState]);
 
   return (
     <div className='card'>
-      <h2 className='card__title'>
-        {title}
-      </h2>
+      { title === 'New Year!' ? 
+        <h2 className='card__title'>
+          {title} &#x1F384; &#x1F387;
+        </h2>
+      :
+        <h2 className='card__title'>
+          {title} &#x1F382; &#x1F389;
+        </h2>
+      }
       <div className='card__info'>
         <p>
           {birthday.day}.
-        </p>
-        <p>
           {birthday.month}.
-        </p>
-        <p>
           {birthday.year}
         </p>
       </div>
       <div className='card__birthday'>
-        <p>День рождения через: MM-{timeUntilBirthday.month } DD-{timeUntilBirthday.day } HH-{timeUntilBirthday.hour} MM-{timeUntilBirthday.minutes} SS-{timeUntilBirthday.seconds}</p>
+        <p>
+          <span>{ timeUntilBirthday.month }</span> month, &nbsp;
+          <span>{ timeUntilBirthday.day }</span> day, &nbsp;
+          <span>{ timeUntilBirthday.hour }</span> hour, &nbsp;
+          <span>{ timeUntilBirthday.minutes }</span> min, &nbsp;
+          <span>{ timeUntilBirthday.seconds }</span> sec
+        </p>
       </div>
+      <div className='card__progress' style={{ width: 365 - timeUntilBirthday.day }}></div>
     </div>
   )
 }
