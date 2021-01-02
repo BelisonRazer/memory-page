@@ -2,20 +2,42 @@ p, h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
-h1 {
-  color: #27aedb;
-  text-align: center;
-}
-
 body {
   background: rgb(209,209,217);
 }
 
-.app__container {
-  display: flex;
-  justify-content: space-around;
+.app {
+  
 
-  max-width: 1170px;
-  padding: 40px;
-  margin: 0 auto;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    max-width: 1170px;
+    padding: 40px;
+    margin: 0 auto;
+  }
+
+  &__column {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__column:first-child {
+    margin-right: 40px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .app {
+    
+
+    &__container {
+      padding: 20px;
+    }
+
+    &__column:first-child {
+      margin-right: 20px;
+    }
+  }
 }

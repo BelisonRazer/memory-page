@@ -1,50 +1,63 @@
 import React from 'react';
 import { Card } from './card/index';
+import { AddCard } from './addCard/index';
 
 import '../pcss/App.pcss';
 import '../css/App.css';
 
+const types = {
+  holiday: 'holiday',
+  birthday: 'birthday'
+};
+
 const birthdayList = [
-  { name: 'Alla Movsesyan', date: { day: '23', month: '07', year: '1973' } },
-  { name: 'Armen Movsesyan', date: { day: '25', month: '08', year: '1975' } },
-  { name: 'Vladimir Movsesyan', date: { day: '12', month: '01', year: '2003' } },
-  // { name: 'Vyacheslav Chertkov', date: { day: '04', month: '09', year: '1970' } },
-  { name: 'Sergey Chertkov', date: { day: '27', month: '04', year: '1992' } },
-  { name: 'Svyatoslav Ovsyannikov', date: { day: '04', month: '11', year: '1991' } },
-  { name: 'Andrey Molodikhn', date: { day: '27', month: '10', year: '1991' } },
-  { name: 'Maria Molodikhn', date: { day: '05', month: '06', year: '1995' } }
-]
+  { name: 'Alla Movsesyan', date: 112222800 },
+  { name: 'Armen Movsesyan', date: 178156800 },
+  { name: 'Vladimir Movsesyan', date: 1042329600 },
+  { name: 'Vyacheslav Chertkov', date: 21254400 },
+  { name: 'Sergey Chertkov', date: 704332800 },
+  { name: 'Svyatoslav Ovsyannikov', date: 689212800 },
+  { name: 'Andrey Molodikhn', date: 688521600 },
+  { name: 'Maria Molodikhn', date: 802310400 },
+  { name: 'Ivan Glushenko', date: 681868800 }
+];
 
-const nextYear = new Date().getFullYear() + 1;
 const holidayList = [
-  { name: 'New Year!', date: { day: '01', month: '01', year: nextYear } }
-]
+  { name: 'New Year!', date: 1609459200 }
+];
 
-const renderCards = (list) => {
-  const result = list.map((item) => {
-    return (
-      <Card 
-        title={item.name} 
-        birthday={item.date}
-        key={item.name}
-      />
-    );
-  });
+const renderCards = (list, type) => {
+  const result = list.map((item) => (
+    <Card 
+      cardType={ type }
+      cardTitle={ item.name } 
+      cardDate={ item.date }
+      key={ item.name }
+    />
+  ));
 
   return result;
-}
+};
+
+const renderAddCard = (type) => (
+  <AddCard
+    cardType={ type }
+  />
+);
 
 export default function App() {
   return (
-    <div>
-      <div className='app app__container'>
-        <div>
-          { renderCards(birthdayList) }
+    <div className='app'>
+      <div className='app__container'>
+        <div className='app__column'>
+          { renderAddCard(types.birthday) }
+          { renderCards(birthdayList, types.birthday) }
         </div>
-        <div>
-          { renderCards(holidayList) }
+        <div className='app__column'>
+          { renderAddCard(types.holiday) }
+          { renderCards(holidayList, types.holiday) }
         </div>
       </div>
     </div>
-  )
+  );
 };

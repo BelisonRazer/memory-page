@@ -1,108 +1,95 @@
 import React, { useEffect, useState } from 'react';
+
+import format from 'date-fns/format';
+import fromUnixTime from 'date-fns/fromUnixTime';
+import differenceInSeconds from 'date-fns/differenceInSeconds';
+import differenceInMinutes from 'date-fns/differenceInMinutes';
+import differenceInHours from 'date-fns/differenceInHours';
+import differenceInDays from 'date-fns/differenceInDays';
+import differenceInMonths from 'date-fns/differenceInMonths';
+import differenceInYears from 'date-fns/differenceInYears';
+import addYears from 'date-fns/addYears';
+import getDaysInYear from 'date-fns/getDaysInYear';
+
 import './index.pcss';
 
 export const Card = (props) => {
   const {
-    title,
-    birthday,
+    cardType,
+    cardTitle,
+    cardDate
   } = props;
 
-  const parseBirthday = new Date(Date.parse(`${birthday.year}-${birthday.month}-${birthday.day}T00:00:00.000+03:00`));
-  const [currentDateState, setCurrentDateState] = useState(new Date()); 
+  const [currentDateState, setCurrentDateState] = useState(new Date());
 
-  const getFormattedBirthday = () => {
-    let date = '';
-    const birthdayDate = formattingDate(parseBirthday);
-    const currentDate = formattingDate(currentDateState);
+  const birthDate = fromUnixTime(cardDate);
+  const yearCount = differenceInYears(currentDateState, birthDate);
+  const birthDay = addYears(birthDate, yearCount + 1);
+  
+  const secondsUntilBirthDay = differenceInSeconds(birthDay, currentDateState);
+  const minutesUntilBirthDay = differenceInMinutes(birthDay, currentDateState);
+  const hoursUntilBirthDay = differenceInHours(birthDay, currentDateState);
+  const mounthsUntilBirthDay = differenceInMonths(birthDay, currentDateState);
+  const daysUntilBirthDay = differenceInDays(birthDay, currentDateState);
 
-    if (birthdayDate.month >= currentDate.month && 
-      birthdayDate.day >= currentDate.day && 
-      birthdayDate.hour > currentDate.hour) {
-      date = new Date(Date.parse(`${currentDate.year}-${birthdayDate.month}-${birthdayDate.day}T00:00:00.000+03:00`));
-    } else {
-      date = new Date(Date.parse(`${currentDate.year + 1}-${birthdayDate.month}-${birthdayDate.day}T00:00:00.000+03:00`));
-    }
-
-    return date;
+  const emoji = {
+    holiday: '🥳 🎃',
+    birthday: '🎂 🎉',
   };
 
-  const getTimeUntilBirthday = () => {
-    const diff = getFormattedBirthday() - currentDateState;
-    const seconds = Math.floor(diff / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hour = Math.floor(minutes / 60);
-    const day = Math.floor(hour / 24);
-    const month = Math.floor(day / 30,417);
-
-    return {
-      day,
-      month,
-      hour,
-      minutes,
-      seconds
+  const timeData = [
+    {
+      label: 'month',
+      value: mounthsUntilBirthDay
+    },
+    {
+      label: 'day',
+      value: daysUntilBirthDay
+    },
+    {
+      label: 'hour',
+      value: hoursUntilBirthDay
+    },
+    {
+      label: 'min',
+      value: minutesUntilBirthDay
+    },
+    {
+      label: 'sec',
+      value: secondsUntilBirthDay
     }
-  }
-
-  function formattingDate(date) {
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    let hour = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-  
-    if (String(month).length < 2) month = '0' + month;
-    if (String(day).length < 2) day = '0' + day;
-    if (hour.length < 2) hour = '0' + hour;
-    if (minutes.length < 2) minutes = '0' + minutes;
-    if (seconds.length < 2) seconds = '0' + seconds;
-  
-    return {
-      day,
-      month,
-      year,
-      hour,
-      minutes,
-      seconds
-    };
-  }
-
-  const timeUntilBirthday = getTimeUntilBirthday();
+  ];
 
   useEffect(() => {
     setInterval(() => setCurrentDateState(new Date()), 1000);
   }, []);
 
-  useEffect(() => {}, [currentDateState]);
-
   return (
     <div className='card'>
-      { title === 'New Year!' ? 
-        <h2 className='card__title'>
-          {title} &#x1F384; &#x1F387;
-        </h2>
-      :
-        <h2 className='card__title'>
-          {title} &#x1F382; &#x1F389;
-        </h2>
-      }
+      <h2 className='card__title'>
+        { cardTitle } <span className='card__emoji'>{ emoji[cardType] }</span>
+      </h2>
       <div className='card__info'>
-        <p>
-          {birthday.day}.
-          {birthday.month}.
-          {birthday.year}
-        </p>
+        <p>{ format(birthDate, 'dd.MM.yyyy') }</p>
       </div>
       <div className='card__birthday'>
-        <p>
-          <span>{ timeUntilBirthday.month }</span> month, &nbsp;
-          <span>{ timeUntilBirthday.day }</span> day, &nbsp;
-          <span>{ timeUntilBirthday.hour }</span> hour, &nbsp;
-          <span>{ timeUntilBirthday.minutes }</span> min, &nbsp;
-          <span>{ timeUntilBirthday.seconds }</span> sec
-        </p>
+        {
+          timeData.map(({value, label}) => (
+            <div className='card__birthday-box' key={value}>
+              <p className='card__text'>
+                <span className='card__text card__text_light-yellow'>
+                  { value }
+                </span>
+                { label }
+              </p>
+            </div>
+          ))
+        }
       </div>
-      <div className='card__progress' style={{ width: 365 - timeUntilBirthday.day }}></div>
+      <div 
+        className='card__progress'
+        style={{ width: `${100 - (daysUntilBirthDay / getDaysInYear(currentDateState) * 100)}%` }}
+      />
     </div>
-  )
-}
+  );
+};
