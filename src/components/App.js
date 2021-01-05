@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card } from './card/index';
-import { AddCard } from './addCard/index';
+import { Card } from './Card/index';
+import { Button } from './Button/index';
 
 import '../pcss/App.pcss';
 import '../css/App.css';
@@ -39,22 +39,21 @@ const renderCards = (list, type) => {
   return result;
 };
 
-const renderAddCard = (type) => (
-  <AddCard
-    cardType={ type }
-  />
-);
-
 export default function App() {
   return (
     <div className='app'>
       <div className='app__container'>
+        <Button
+          label={ '+' }
+          color={ 'default' }
+          size={ 'medium' }
+          customClassBtn={ 'block-circle' }
+          customClassBtnContainer={ 'position-fixed position-fixed_bottom-right-40' }
+        />
         <div className='app__column'>
-          { renderAddCard(types.birthday) }
           { renderCards(birthdayList, types.birthday) }
         </div>
         <div className='app__column'>
-          { renderAddCard(types.holiday) }
           { renderCards(holidayList, types.holiday) }
         </div>
       </div>

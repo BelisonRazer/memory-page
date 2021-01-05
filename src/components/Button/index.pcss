@@ -1,0 +1,110 @@
+$colorTextDefault: #fef5ef;
+$colorBackgroundDefault: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
+
+.button {
+
+
+  &__btn {
+    box-sizing: border-box;
+    border-radius: 3px;
+
+    text-align: center;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    &_color-default {
+      color: $colorTextDefault;
+      background: $colorBackgroundDefault;
+      border: none;
+    }
+
+    &_color-primary {
+
+    }
+
+    &_size-small {
+      width: 60px;
+      height: 20px;
+
+      font-size: 15px;
+    }
+
+    &_size-medium {
+      width: 80px;
+      height: 30px;
+
+      font-size: 25px;
+    }
+
+    &_size-large {
+      width: 100px;
+      height: 40px;
+
+      font-size: 35px;
+    }
+  }
+}
+
+/* @media screen and (max-width: 630px) {
+  .button {
+
+
+    &__form {
+      grid-template-columns: auto;
+      grid-template-rows: repeat(3, 1fr);
+      grid-auto-flow: row;
+    }
+  }
+} */
+
+/* @media screen and (max-width: 991px) {
+стили для больших планшетов - начало
+
+}
+
+@media screen and (max-width: 767px) {
+стили для средних планшетов - начало
+
+}
+
+@media screen and (max-width: 479px) {
+стили для телефонов - начало
+
+} */
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Смартфоны (Портрет и ландшафтный) */
+}
+
+@media only screen and (min-width : 321px) {
+/* Смартфоны (ландшафтный) */
+}
+
+@media only screen and (max-width : 320px) {
+/* Смартфоны (portrait) */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* iPads (Портрет и Ландшафтный) */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  /* iPads (Ландшафтный) */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+  /* iPads (Портрет) */
+}
+
+@media only screen and (min-width : 1224px) {
+  /* Настольные компьютеры и ноутбуки */
+}
+
+@media only screen and (min-width : 1824px) {
+  /* Большие экраны */
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+  /* iPhone 4 */
+}
