@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Card } from './Card/index';
 import { Button } from './Button/index';
+import { Modal } from './Modal/index';
 
 import '../pcss/App.pcss';
 import '../css/App.css';
@@ -26,6 +28,11 @@ const holidayList = [
   { name: 'New Year!', date: 1609459200 }
 ];
 
+const modalTitleList = {
+  add: 'Adding a card',
+  edit: 'Card editing'
+};
+
 const renderCards = (list, type) => {
   const result = list.map((item) => (
     <Card 
@@ -40,15 +47,25 @@ const renderCards = (list, type) => {
 };
 
 export default function App() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const handleToggleModal = () => {
+    console.log('toggle');
+    setModalIsOpen(!modalIsOpen);
+  };
+
+  const handleSubmitModal = () => {
+    console.log('submit');
+  };
+
   return (
     <div className='app'>
       <div className='app__container'>
         <Button
           label={ '+' }
-          color={ 'default' }
-          size={ 'medium' }
           customClassBtn={ 'block-circle' }
           customClassBtnContainer={ 'position-fixed position-fixed_bottom-right-40' }
+          onClick={ handleToggleModal }
         />
         <div className='app__column'>
           { renderCards(birthdayList, types.birthday) }
@@ -56,6 +73,15 @@ export default function App() {
         <div className='app__column'>
           { renderCards(holidayList, types.holiday) }
         </div>
+        <Modal
+          title={ modalTitleList.add }
+          // modalType={ 'add' }
+          onSubmit={ handleSubmitModal }
+          onCancel={ handleToggleModal }
+          isOpen={ modalIsOpen }
+        >
+          <div>LOL KEK</div> 
+        </Modal>
       </div>
     </div>
   );

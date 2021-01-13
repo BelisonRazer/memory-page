@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import format from 'date-fns/format';
 import fromUnixTime from 'date-fns/fromUnixTime';
@@ -75,7 +76,7 @@ export const Card = (props) => {
       <div className='card__birthday'>
         {
           timeData.map(({value, label}) => (
-            <div className='card__birthday-box' key={value}>
+            <div className='card__birthday-box' key={ value + label }>
               <p className='card__text'>
                 <span className='card__text card__text_light-yellow'>
                   { value }
@@ -92,4 +93,10 @@ export const Card = (props) => {
       />
     </div>
   );
+};
+
+Card.propTypes = {
+  cardType: PropTypes.string.isRequired,
+  cardTitle: PropTypes.string.isRequired,
+  cardDate: PropTypes.number.isRequired
 };

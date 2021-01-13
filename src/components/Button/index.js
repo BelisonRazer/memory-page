@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
 import './index.pcss';
 
 export const Button = (props) => {
@@ -9,19 +10,21 @@ export const Button = (props) => {
     disabled,
     size,
     customClassBtn,
-    customClassBtnContainer
+    customClassBtnContainer,
+    onClick
   } = props;
 
   return (
-    <div className={`button ${customClassBtnContainer}`}>
+    <div className={`button ${ customClassBtnContainer }`}>
       <button className={
         `
           button__btn
-          button__btn_color-${color ? color : 'default'}
-          button__btn_size-${size ? size : 'medium'}
-          ${customClassBtn}
+          button__btn_color-${ color }
+          button__btn_size-${ size }
+          ${ customClassBtn }
         `
-      } disabled={ disabled ? 'disabled' : false }>
+      } onClick={ onClick }
+        disabled={ disabled ? 'disabled' : false }>
         { label }
       </button>
     </div>
@@ -30,9 +33,19 @@ export const Button = (props) => {
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,
-  color: PropTypes.oneOf(['default', 'primary']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   customClassBtn: PropTypes.string,
-  customClassBtnContainer: PropTypes.string
+  customClassBtnContainer: PropTypes.string,
+  onClick: PropTypes.func
+};
+
+Button.defaultProps = {
+  color: 'default',
+  disabled: false,
+  size: 'medium',
+  customClassBtn: '',
+  customClassBtnContainer: '',
+  onClick: () => {}
 };

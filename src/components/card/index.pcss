@@ -1,5 +1,7 @@
-$yellow: #e4bb97;
-$colorText: #fef5ef;
+$colorDefault: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
+$colorPrimary: #fef5ef;
+$colorSecondary: #584B53;
+$colorYellow: #e4bb97;
 
 .card {
   display: block;
@@ -26,7 +28,7 @@ $colorText: #fef5ef;
   transition: .2s ease-in-out;
 
   &__title {
-    color: $colorText;
+    color: $colorPrimary;
   }
 
   &__emoji {
@@ -41,7 +43,7 @@ $colorText: #fef5ef;
     margin-right: 5px;
 
     &_light-yellow {
-      color: $yellow;
+      color: $colorYellow;
     }
   }
 

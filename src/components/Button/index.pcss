@@ -1,5 +1,8 @@
-$colorTextDefault: #fef5ef;
-$colorBackgroundDefault: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
+$colorDefault: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
+$colorPrimary: #fef5ef;
+$colorSecondary: #584B53;
+$colorYellow: #e4bb97;
+
 
 .button {
 
@@ -12,22 +15,52 @@ $colorBackgroundDefault: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
     font-weight: 400;
 
     cursor: pointer;
+    outline: none;
 
     &_color-default {
-      color: $colorTextDefault;
-      background: $colorBackgroundDefault;
+      color: $colorPrimary;
+
+      background: $colorDefault;
       border: none;
     }
 
-    &_color-primary {
+    &_color-default:hover {
+      opacity: .8;
+    }
 
+    &_color-primary {
+      color: $colorDefault;
+
+      background: $colorPrimary;
+      border: 1px solid $colorDefault;
+    }
+
+    &_color-primary:hover {
+      color: $colorPrimary;
+
+      background: $colorDefault;
+      border: none;
+    }
+
+    &_color-secondary {
+      color: $colorYellow;
+
+      background: $colorPrimary;
+      border: 1px solid $colorYellow;
+    }
+
+    &_color-secondary:hover {
+      color: $colorPrimary;
+
+      background: $colorYellow;
+      border: none;
     }
 
     &_size-small {
       width: 60px;
       height: 20px;
 
-      font-size: 15px;
+      font-size: 12px;
     }
 
     &_size-medium {
@@ -45,18 +78,6 @@ $colorBackgroundDefault: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
     }
   }
 }
-
-/* @media screen and (max-width: 630px) {
-  .button {
-
-
-    &__form {
-      grid-template-columns: auto;
-      grid-template-rows: repeat(3, 1fr);
-      grid-auto-flow: row;
-    }
-  }
-} */
 
 /* @media screen and (max-width: 991px) {
 стили для больших планшетов - начало
