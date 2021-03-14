@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import { Card } from './Card/index';
-import { Button } from './Button/index';
-import { Modal } from './Modal/index';
+import { Card } from './components/Card/index';
+import { Button } from './components/Button/index';
+import { Modal } from './components/Modal/index';
 
-import '../pcss/App.pcss';
-import '../css/App.css';
+import './pcss/App.pcss';
+import './css/App.css';
 
 const types = {
   holiday: 'holiday',
