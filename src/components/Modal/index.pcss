@@ -1,62 +1,77 @@
-p, h1, h2, h3, h4, h5 {
-  margin: 0;
-}
+$colorDefault: linear-gradient(#584B53, rgb(81,81,86)) #584B53;
+$colorPrimary: #fef5ef;
+$colorSecondary: #584B53;
+$colorYellow: #e4bb97;
 
-body {
-  background: rgb(209,209,217);
-}
+.modal {
+  position: absolute;
+  left: 0;
+  top: 0;
 
-.app {
-  
+  width: 100%;
+  height: 100%;
 
-  &__container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 40px;
+  color: $colorSecondary;
+  font-size: 14px;
 
-    max-width: 1170px;
-    padding: 40px;
-    margin: 0 auto;
+  background: rgba(0,0,0,.7);
+
+  &__window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 300px;
+    /* height: 400px; */
+    max-width: 100%;
+    max-height: 100%;
+    padding: 15px;
+
+    background: #fef5ef;
+    border-radius: 3px;
   }
 
-  &__column {
-    width: 100%;
-    box-sizing: border-box;
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    margin-bottom: 15px;
+
+    border-bottom: 1px solid $colorSecondary;
   }
 
-  &__column:first-child {
-    margin-right: 40px;
+  &__body {
+    margin-bottom: 10px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__footer :nth-last-of-type(2) {
+    margin-right: 5px;
+  }
+
+  &__title {
+    font-size: 2em;
+  }
+
+  &__icon {
+    cursor: pointer;
+    transform: scale(.8);
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  &__icon:hover {
+    transform: scale(1);
   }
 }
-
-.position-fixed {
-  position: fixed;
-
-  &_bottom-right-40 {
-    bottom: 40px;
-    right: 40px;
-  }
-}
-
-.block-circle {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-}
-
-/* @media screen and (max-width: 630px) {
-  .app {
-    
-
-    &__container {
-      padding: 20px;
-    }
-
-    &__column:first-child {
-      margin-right: 20px;
-    }
-  }
-} */
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 /* Смартфоны (Портрет и ландшафтный) */
